@@ -1,31 +1,56 @@
 import 'dart:async';
-import 'dart:io';
-
 import 'package:flutter/services.dart';
 
 class SimInfo {
-  static const MethodChannel _channel =
-      const MethodChannel('flutter.moum.sim_info');
+  static const MethodChannel _channel = MethodChannel('flutter.moum.sim_info');
 
-  static Future<String> get getAllowsVOIP async {
-    bool value =  await _channel.invokeMethod('allowsVOIP');
-    return value.toString();
+  static Future<bool?> getAllowsVOIP async {
+    try {
+      final value = await _channel.invokeMethod<bool>('allowsVOIP');
+      return value;
+    } catch (e) {
+      print('Error getting allowsVOIP: $e');
+      return null;
+    }
   }
 
-  static Future<String> get getCarrierName async {
-    return await _channel.invokeMethod('carrierName');
+  static Future<String?> getCarrierName async {
+    try {
+      final value = await _channel.invokeMethod<String>('carrierName');
+      return value;
+    } catch (e) {
+      print('Error getting carrierName: $e');
+      return null;
+    }
   }
 
-  static Future<String> get getIsoCountryCode async {
-    return await _channel.invokeMethod('isoCountryCode');
+  static Future<String?> getIsoCountryCode async {
+    try {
+      final value = await _channel.invokeMethod<String>('isoCountryCode');
+      return value;
+    } catch (e) {
+      print('Error getting isoCountryCode: $e');
+      return null;
+    }
   }
 
-  static Future<String> get getMobileCountryCode async {
-    return await _channel.invokeMethod('mobileCountryCode');
+  static Future<String?> getMobileCountryCode async {
+    try {
+      final value = await _channel.invokeMethod<String>('mobileCountryCode');
+      return value;
+    } catch (e) {
+      print('Error getting mobileCountryCode: $e');
+      return null;
+    }
   }
 
-  static Future<String> get getMobileNetworkCode async {
-    return await _channel.invokeMethod('mobileNetworkCode');
+  static Future<String?> getMobileNetworkCode async {
+    try {
+      final value = await _channel.invokeMethod<String>('mobileNetworkCode');
+      return value;
+    } catch (e) {
+      print('Error getting mobileNetworkCode: $e');
+      return null;
+    }
   }
-
 }
